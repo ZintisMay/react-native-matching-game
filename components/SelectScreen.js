@@ -11,8 +11,11 @@ import {
 import { TouchableHighlight } from "react-native-web";
 import { useWindowDimensions } from "react-native";
 
-export default function GameScreen(props) {
-  let { boardSizes, setBoardSize } = props;
+export default function SelectScreen(props) {
+  let { boardSize, boardSizes } = props;
+  let cellCount = boardSize.w * boardSize.h; // width * height
+
+  let [imageSet, setImageSet] = useState(null);
   console.log("GameScreen", boardSizes);
   return (
     <SafeAreaView style={styles.container}>
@@ -58,6 +61,9 @@ const styles = StyleSheet.create({
     height: "20vmin",
     width: "20vmin",
     backgroundColor: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   selectArea: {
     display: "flex",

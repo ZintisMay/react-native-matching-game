@@ -8,7 +8,7 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableHighlight } from "react-native-web";
 import { useWindowDimensions } from "react-native";
 import { shuffle, determineDimensions } from "./utils";
@@ -19,29 +19,12 @@ const randomCells = shuffle([...randomABC, ...randomABC]);
 
 export default function GameScreen(props) {
   const { boardSize } = props;
-  const board = createRandomizedItemArray(abc, boardSize);
-  let [cellWidthPercentage, cellHeightPercentage] =
-    determineDimensions(boardSize);
-
-  console.log(board, boardSize);
-
+  const [board, setBoard] = useState(createRandomizedGameArray(abc, boardSize));
+  const [openIndexes, setOpenIndexes] = useState([]);
+  const [lastThreeIndexes, setLastThreeIndexes] = useState([]);
   const [clicks, setClicks] = useState(0);
   const [selectedList, setSelectedList] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
-
-  const selectCard = (val) => {
-    setClicks(clicks + 1);
-    if (selectedList.includes(val)) {
-      // match
-      setSelectedList(selectedList.filter((item) => item !== val));
-      setMatchedCards([...matchedCards, val]);
-    } else if (selectedList.length < 3) {
-      setSelectedList([...selectedList, val]);
-    } else {
-      // kick item 1, add item to end
-      setSelectedList([selectedList.slice(1), val]);
-    }
-  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -108,9 +91,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function createRandomizedItemArray(items, size) {
+function createRandomizedGameArray(items, size) {
   let itemSubset = items.slice(0, size / 2);
   let result = shuffle([...itemSubset, ...itemSubset]);
-  console.log("createRandomizedItemArray", result);
+  // console.log("createRandomizedGameArray", result);
   return result;
 }

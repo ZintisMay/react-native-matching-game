@@ -10,10 +10,10 @@ import {
 import { TouchableHighlight } from "react-native-web";
 import { useWindowDimensions } from "react-native";
 
-export default function MenuScreen() {
+export default function GameImageSelect() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Menu</Text>
+      <Text>GameImageSelect</Text>
     </SafeAreaView>
   );
 }

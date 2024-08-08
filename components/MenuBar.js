@@ -11,7 +11,7 @@ import { TouchableHighlight } from "react-native-web";
 import { useWindowDimensions } from "react-native";
 
 export default function MenuBar(props) {
-  const menuEntries = Object.values(props.menuItems);
+  const menuEntries = Object.keys(props.menuItems);
   const setView = props.setView;
   return (
     <SafeAreaView style={styles.container}>
@@ -20,10 +20,10 @@ export default function MenuBar(props) {
           style={styles.button}
           key={index}
           onPress={() => {
-            setView(item.name);
+            setView(item);
           }}
         >
-          <Text>{item.displayName}</Text>
+          <Text>{item}</Text>
         </Pressable>
       ))}
     </SafeAreaView>
