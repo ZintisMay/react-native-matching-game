@@ -30,13 +30,13 @@ export default function HomeScreen() {
           style={css.largeButtons}
           onPress={() => alert("Button pressed!")}
         >
-          Play
+          <Text>Play</Text>
         </Pressable>
         <Pressable
           style={css.largeButtons}
           onPress={() => alert("Button pressed!")}
         >
-          Settings
+          <Text>Settings</Text>
         </Pressable>
       </View>
     </SafeAreaView>

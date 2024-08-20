@@ -1,5 +1,5 @@
 export function shuffle(array) {
-  let result = cloneDeepNaive(array);
+  let result = cloneDeepSimple(array);
   let currentIndex = array.length;
 
   // While there remain elements to shuffle...
@@ -14,20 +14,21 @@ export function shuffle(array) {
       result[currentIndex],
     ];
   }
+  console.log("shuffle", result);
   return result;
 }
 
-export function cloneDeepNaive(obj) {
+export function cloneDeepSimple(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-export function determineDimensions(size) {
-  let root = Math.sqrt(size);
-  let down = Math.ceil(root),
-    across = Math.floor(root);
+// export function determineDimensions(size) {
+//   let root = Math.sqrt(size);
+//   let down = Math.ceil(root),
+//     across = Math.floor(root);
 
-  let percentageWidth = 100 / across,
-    percentageHeight = 100 / down;
+//   let percentageWidth = 100 / across,
+//     percentageHeight = 100 / down;
 
-  return [percentageWidth, percentageHeight];
-}
+//   return [percentageWidth, percentageHeight];
+// }

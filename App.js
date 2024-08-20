@@ -67,9 +67,7 @@ export default function App() {
   return (
     <StateContextProvider>
       <SafeAreaView style={styles.container}>
-        <Counter />
-        <Counter />
-        {/* <ViewToDisplay /> */}
+        <ViewToDisplay />
         <MenuBar menuItems={views} setView={setView} />
       </SafeAreaView>
     </StateContextProvider>

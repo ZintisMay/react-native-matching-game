@@ -6,7 +6,9 @@ import {
   useState,
   Pressable,
   Text,
+  PixelRatio,
 } from "react-native";
+import { px } from "./utils/pixelHelper";
 import { TouchableHighlight } from "react-native-web";
 import { useWindowDimensions } from "react-native";
 
@@ -23,7 +25,7 @@ export default function MenuBar(props) {
             setView(item);
           }}
         >
-          <Text>{item}</Text>
+          <Text style={styles.text}>{item}</Text>
         </Pressable>
       ))}
     </SafeAreaView>
@@ -51,5 +53,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     border: "1px solid black",
     backgroundColor: "white",
+  },
+  text: {
+    fontSize: px(5),
   },
 });

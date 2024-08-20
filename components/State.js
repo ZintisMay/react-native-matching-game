@@ -6,15 +6,29 @@ const initialState = {
   count: 0,
 };
 
+const priorState = {
+  ...initialState,
+};
+
 //takes a component, stores the state values and methods
 const stateContextWrapper = (component) => ({
-  ...initialState,
+  ...priorState,
   increment: () => {
-    initialState.count += 1;
+    priorState.count += 1;
     component?.setState({ context: stateContextWrapper(component) });
   },
   decrement: () => {
-    initialState.count -= 1;
+    priorState.count -= 1;
+    component?.setState({ context: stateContextWrapper(component) });
+  },
+  getKey: (key) => {
+    if (priorState[key]) return priorState[key];
+    return null;
+  },
+  setState: (obj) => {
+    for (let [key, val] of Object.entries(obj)) {
+      priorState[key] = val;
+    }
     component?.setState({ context: stateContextWrapper(component) });
   },
 });
